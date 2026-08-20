@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: agri-api
+    runtime: node
+    region: frankfurt  # closest to Uganda
+    rootDir: apps/api
+    buildCommand: npm install
+    startCommand: node --import tsx/esm src/server.ts
+    envVars:
+      - key: NODE_ENV
+        value: production
+      # Render sets PORT automatically; the API reads it via process.env.PORT
+      - key: WEB_ORIGIN
+        sync: false  # set to your Cloudflare Pages URL, e.g. https://your-app.pages.dev
+      - key: DATABASE_URL
+        sync: false  # set to your PostgreSQL connection string
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: DEMO_TOTP_CODE
+        sync: false

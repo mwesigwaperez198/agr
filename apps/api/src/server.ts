@@ -48,7 +48,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 const app = Fastify({ logger: { level: process.env.LOG_LEVEL || 'info' }, bodyLimit: 1_000_000 });
-const port = Number(process.env.API_PORT || 8787);
+const port = Number(process.env.PORT || process.env.API_PORT || 8787);
 const listingViewers = new Map<string, Set<string>>();
 
 await hydrateRuntimeSettings(settings).catch(error => app.log.warn({ err: error }, 'Database settings unavailable; using development defaults'));
@@ -80,7 +80,11 @@ await hydrateListings().then(rows => rows.forEach(row => {
 })).catch(error => app.log.warn({ err: error }, 'Database listings unavailable; starting with seed listings'));
 const persistedOrders = await hydrateOrders().catch(error => { app.log.warn({ err: error }, 'Database orders unavailable; starting with seed orders'); return []; });
 
-await app.register(cors, { origin: true, credentials: true });
+const allowedOrigins = process.env.WEB_ORIGIN ? process.env.WEB_ORIGIN.split(',').map(o => o.trim()) : [];
+await app.register(cors, {
+  origin: allowedOrigins.length > 0 ? allowedOrigins : true,
+  credentials: true,
+});
 await app.register(cookie);
 await app.register(multipart, { limits: { files: 1, fileSize: 1_500_000, fields: 4, parts: 5 } });
 await app.register(helmet, { contentSecurityPolicy: false });
@@ -127,11 +131,13 @@ function publicListing(item: any) {
 }
 
 const isEmbeddedDevelopmentPreview = process.env.E2B_SANDBOX === 'true';
+const isProduction = process.env.NODE_ENV === 'production';
+const isCrossOrigin = isProduction && Boolean(process.env.WEB_ORIGIN);
 const sessionCookie: any = {
   path: '/', httpOnly: true,
-  sameSite: isEmbeddedDevelopmentPreview ? 'none' : 'strict',
-  secure: process.env.NODE_ENV === 'production' || isEmbeddedDevelopmentPreview,
-  partitioned: isEmbeddedDevelopmentPreview || undefined,
+  sameSite: isCrossOrigin ? 'none' : isEmbeddedDevelopmentPreview ? 'none' : 'strict',
+  secure: isProduction || isEmbeddedDevelopmentPreview,
+  partitioned: isCrossOrigin || isEmbeddedDevelopmentPreview || undefined,
   maxAge: 7 * 24 * 60 * 60,
 };
 
