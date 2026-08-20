@@ -1,0 +1,44 @@
+
+> uganda-agri-platform@0.1.0 dev:web
+> npm run dev --workspace=@agri/web
+
+
+> @agri/web@0.1.0 dev
+> vite --host 0.0.0.0
+
+
+  VITE v6.4.3  ready in 2287 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: http://192.168.100.125:5173/
+11:52:02 AM [vite] (client) page reload index.html
+11:52:03 AM [vite] (client) hmr update /src/App.tsx
+11:52:03 AM [vite] (client) hmr update /src/App.tsx
+11:52:03 AM [vite] (client) hmr update /src/App.tsx
+11:52:03 AM [vite] (client) page reload src/main.tsx
+11:52:03 AM [vite] (client) hmr update /src/styles.css
+11:52:03 AM [vite] changed tsconfig file detected: /home/sirclovis/agri-connect/apps/web/tsconfig.json - Clearing cache and forcing full-reload to ensure TypeScript is compiled with updated config values.
+11:52:03 AM [vite] vite.config.ts changed, restarting server...
+11:52:28 AM [vite] server restarted.
+12:08:05 PM [vite] (client) hmr update /src/App.tsx
+12:17:26 PM [vite] (client) hmr update /src/styles.css
+12:26:32 PM [vite] (client) hmr update /src/styles.css
+12:26:32 PM [vite] (client) hmr update /src/styles.css
+12:57:41 PM [vite] http proxy error: /api/v1/admin/attention
+Error: connect ECONNREFUSED 127.0.0.1:8787
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+1:02:05 PM [vite] (client) hmr update /src/App.tsx
+1:02:47 PM [vite] (client) hmr update /src/App.tsx
+1:04:02 PM [vite] (client) hmr update /src/styles.css
+1:15:51 PM [vite] (client) hmr update /src/App.tsx
+1:16:45 PM [vite] (client) hmr update /src/styles.css
+1:22:16 PM [vite] (client) hmr update /src/styles.css
+1:38:23 PM [vite] (client) hmr update /src/styles.css
+1:38:23 PM [vite] (client) hmr update /src/styles.css
+1:38:50 PM [vite] (client) hmr update /src/App.tsx
+2:12:45 PM [vite] (client) hmr update /src/App.tsx
+2:13:40 PM [vite] (client) hmr update /src/App.tsx
+2:14:20 PM [vite] (client) hmr update /src/styles.css
+2:51:38 PM [vite] (client) hmr update /src/styles.css
+2:51:39 PM [vite] (client) hmr update /src/App.tsx
+2:51:39 PM [vite] (client) hmr update /src/App.tsx

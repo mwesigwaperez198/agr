@@ -1,0 +1,14 @@
+{
+  "name": "uganda-agri-platform",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": ["apps/*"],
+  "scripts": {
+    "dev:api": "npm run dev --workspace=@agri/api",
+    "dev:web": "npm run dev --workspace=@agri/web",
+    "build": "npm run build --workspace=@agri/web",
+    "test": "npm run test --workspace=@agri/api",
+    "check": "npm run typecheck --workspace=@agri/web && npm run typecheck --workspace=@agri/api && npm run test --workspace=@agri/api"
+  },
+  "engines": { "node": ">=20" }
+}

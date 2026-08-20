@@ -1,0 +1,16 @@
+BEGIN;
+ALTER TABLE identity.accounts ADD COLUMN IF NOT EXISTS display_name text;
+ALTER TABLE identity.accounts ADD COLUMN IF NOT EXISTS first_name text;
+ALTER TABLE identity.accounts ADD COLUMN IF NOT EXISTS phone text;
+ALTER TABLE identity.accounts ADD COLUMN IF NOT EXISTS email text;
+ALTER TABLE identity.accounts ADD COLUMN IF NOT EXISTS password_hash text;
+ALTER TABLE identity.accounts ADD COLUMN IF NOT EXISTS location text;
+ALTER TABLE identity.accounts ADD COLUMN IF NOT EXISTS district text;
+ALTER TABLE identity.accounts ADD COLUMN IF NOT EXISTS avatar text;
+ALTER TABLE identity.accounts ADD COLUMN IF NOT EXISTS phone_verified boolean NOT NULL DEFAULT false;
+ALTER TABLE identity.accounts ADD COLUMN IF NOT EXISTS email_verified boolean NOT NULL DEFAULT false;
+ALTER TABLE identity.accounts ADD COLUMN IF NOT EXISTS joined_at timestamptz NOT NULL DEFAULT now();
+ALTER TABLE identity.accounts ADD COLUMN IF NOT EXISTS last_active_at timestamptz NOT NULL DEFAULT now();
+CREATE UNIQUE INDEX IF NOT EXISTS identity_accounts_phone_idx ON identity.accounts(phone) WHERE phone IS NOT NULL;
+CREATE UNIQUE INDEX IF NOT EXISTS identity_accounts_email_idx ON identity.accounts(lower(email)) WHERE email IS NOT NULL;
+COMMIT;

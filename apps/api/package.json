@@ -1,0 +1,31 @@
+{
+  "name": "@agri/api",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch --import tsx/esm src/server.ts",
+    "start": "node --import tsx/esm src/server.ts",
+    "typecheck": "tsc -p tsconfig.json --pretty false",
+    "test": "node --import tsx/esm --test test/*.test.*",
+    "db:migrate": "node ../../scripts/db-migrate.mjs",
+    "db:seed:translations": "node ../../scripts/seed-translations.mjs"
+  },
+  "dependencies": {
+    "@fastify/cookie": "^10.0.1",
+    "@fastify/cors": "^10.0.1",
+    "@fastify/helmet": "^13.0.1",
+    "@fastify/multipart": "^9.4.0",
+    "@fastify/rate-limit": "^10.2.1",
+    "dotenv": "^17.4.2",
+    "fastify": "^5.2.1",
+    "pg": "^8.23.0",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.1",
+    "@types/pg": "^8.21.0",
+    "tsx": "^4.19.3",
+    "typescript": "^5.7.3"
+  }
+}

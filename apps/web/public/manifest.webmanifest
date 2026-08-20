@@ -1,0 +1,19 @@
+{
+  "name": "Agricultural Platform",
+  "short_name": "Agri Platform",
+  "description": "Coffee-first marketplace and agricultural advice for Uganda.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f5f5ef",
+  "theme_color": "#135c3a",
+  "orientation": "portrait-primary",
+  "lang": "en",
+  "categories": ["business", "education", "shopping"],
+  "icons": [
+    { "src": "/icons/app-icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Sell produce", "url": "/sell", "icons": [{ "src": "/icons/app-icon.svg", "sizes": "any", "type": "image/svg+xml" }] },
+    { "name": "Ask AI", "url": "/ai", "icons": [{ "src": "/icons/app-icon.svg", "sizes": "any", "type": "image/svg+xml" }] }
+  ]
+}
